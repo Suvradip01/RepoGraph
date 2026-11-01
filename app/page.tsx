@@ -495,11 +495,13 @@ function FetchIllustration() {
   return (
     <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="landing-step-svg" aria-hidden="true">
       {/* Archive / folder box on left */}
-      <rect x="16" y="32" width="56" height="52" rx="6" stroke="var(--line)" strokeWidth="1.25" fill="var(--canvas)" />
-      <line x1="16" y1="46" x2="72" y2="46" stroke="var(--line)" strokeWidth="1.25" />
+      <rect x="16" y="32" width="56" height="52" rx="6" stroke="#3b82f6" strokeWidth="1.4" fill="var(--canvas)" />
+      <line x1="16" y1="46" x2="72" y2="46" stroke="#3b82f6" strokeWidth="1.25" opacity="0.75" />
+      <rect x="25" y="36" width="18" height="4" rx="2" fill="#60a5fa" opacity="0.85" />
 
       {/* Connecting line */}
-      <line x1="72" y1="58" x2="98" y2="58" stroke="var(--line)" strokeWidth="1.25" />
+      <line x1="72" y1="58" x2="98" y2="58" stroke="#fbbf24" strokeWidth="1.5" />
+      <circle cx="98" cy="58" r="2.5" fill="#fbbf24" />
 
       {/* Stack of 3 file cards */}
       {/* Back card */}
@@ -511,10 +513,10 @@ function FetchIllustration() {
       <line x1="112" y1="42" x2="158" y2="42" stroke="var(--line)" strokeWidth="1" opacity="0.6" />
 
       {/* Front card */}
-      <rect x="102" y="40" width="46" height="52" rx="4" stroke="var(--line)" strokeWidth="1.25" fill="var(--surface)" />
-      <line x1="102" y1="52" x2="148" y2="52" stroke="var(--line)" strokeWidth="1.25" />
-      <rect x="110" y="62" width="22" height="3" rx="1.5" fill="var(--fg-muted)" opacity="0.4" />
-      <rect x="110" y="70" width="30" height="3" rx="1.5" fill="var(--fg-muted)" opacity="0.25" />
+      <rect x="102" y="40" width="46" height="52" rx="4" stroke="#22c55e" strokeWidth="1.4" fill="var(--surface)" />
+      <line x1="102" y1="52" x2="148" y2="52" stroke="#22c55e" strokeWidth="1.25" opacity="0.75" />
+      <rect x="110" y="62" width="22" height="3" rx="1.5" fill="#a855f7" opacity="0.8" />
+      <rect x="110" y="70" width="30" height="3" rx="1.5" fill="#60a5fa" opacity="0.65" />
     </svg>
   );
 }
@@ -578,30 +580,30 @@ function DrawIllustration() {
   return (
     <svg viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="landing-step-svg" aria-hidden="true">
       {/* Left cards */}
-      <rect x="16" y="22" width="46" height="22" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--surface)" />
-      <rect x="25" y="31" width="28" height="3" rx="1.5" fill="var(--fg-muted)" opacity="0.5" />
+      <rect x="16" y="22" width="46" height="22" rx="4" stroke="#f59e0b" strokeWidth="1.2" fill="var(--surface)" />
+      <rect x="25" y="31" width="28" height="3" rx="1.5" fill="#fbbf24" opacity="0.85" />
 
-      <rect x="16" y="74" width="46" height="22" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--surface)" />
-      <rect x="25" y="83" width="28" height="3" rx="1.5" fill="var(--fg-muted)" opacity="0.5" />
+      <rect x="16" y="74" width="46" height="22" rx="4" stroke="#a855f7" strokeWidth="1.2" fill="var(--surface)" />
+      <rect x="25" y="83" width="28" height="3" rx="1.5" fill="#c084fc" opacity="0.85" />
 
       {/* Connecting lines into Center card */}
-      <line x1="62" y1="33" x2="80" y2="59" stroke="var(--line)" strokeWidth="1.25" />
-      <line x1="62" y1="85" x2="80" y2="59" stroke="var(--line)" strokeWidth="1.25" />
+      <line x1="62" y1="33" x2="80" y2="59" stroke="#fbbf24" strokeWidth="1.5" />
+      <line x1="62" y1="85" x2="80" y2="59" stroke="#c084fc" strokeWidth="1.5" />
 
       {/* Center card */}
-      <rect x="80" y="48" width="46" height="22" rx="4" stroke="var(--line)" strokeWidth="1.25" fill="var(--raised)" />
-      <rect x="89" y="57" width="28" height="3" rx="1.5" fill="var(--fg)" opacity="0.8" />
+      <rect x="80" y="48" width="46" height="22" rx="4" stroke="#3b82f6" strokeWidth="1.5" fill="var(--raised)" />
+      <rect x="89" y="57" width="28" height="3" rx="1.5" fill="#93c5fd" opacity="0.95" />
 
       {/* Connecting lines out of Center card */}
-      <line x1="126" y1="59" x2="144" y2="33" stroke="var(--line)" strokeWidth="1.25" />
-      <line x1="126" y1="59" x2="144" y2="85" stroke="var(--line)" strokeWidth="1.25" />
+      <line x1="126" y1="59" x2="144" y2="33" stroke="#22c55e" strokeWidth="1.5" />
+      <line x1="126" y1="59" x2="144" y2="85" stroke="#06b6d4" strokeWidth="1.5" />
 
       {/* Right cards */}
-      <rect x="144" y="22" width="46" height="22" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--surface)" />
-      <rect x="153" y="31" width="28" height="3" rx="1.5" fill="var(--fg-muted)" opacity="0.5" />
+      <rect x="144" y="22" width="46" height="22" rx="4" stroke="#22c55e" strokeWidth="1.2" fill="var(--surface)" />
+      <rect x="153" y="31" width="28" height="3" rx="1.5" fill="#4ade80" opacity="0.85" />
 
-      <rect x="144" y="74" width="46" height="22" rx="4" stroke="var(--line)" strokeWidth="1" fill="var(--surface)" />
-      <rect x="153" y="83" width="28" height="3" rx="1.5" fill="var(--fg-muted)" opacity="0.5" />
+      <rect x="144" y="74" width="46" height="22" rx="4" stroke="#06b6d4" strokeWidth="1.2" fill="var(--surface)" />
+      <rect x="153" y="83" width="28" height="3" rx="1.5" fill="#67e8f9" opacity="0.85" />
     </svg>
   );
 }
