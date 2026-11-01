@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
+import { assertEnv } from "./lib/env";
+
+// Crashes `next dev` and `next build` immediately when a required variable is
+// absent, instead of surfacing a confusing Clerk or Supabase error later.
+assertEnv();
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
