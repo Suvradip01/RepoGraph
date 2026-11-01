@@ -1,5 +1,16 @@
 ﻿# RepoGraph
 
+<p align="center">
+  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-black?logo=next.js&logoColor=white" />
+  <img alt="React" src="https://img.shields.io/badge/React-19-149eca?logo=react&logoColor=white" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-Parser-3178c6?logo=typescript&logoColor=white" />
+  <img alt="Clerk" src="https://img.shields.io/badge/Auth-Clerk-6c47ff?logo=clerk&logoColor=white" />
+  <img alt="Supabase" src="https://img.shields.io/badge/Database-Supabase-3fcf8e?logo=supabase&logoColor=white" />
+  <img alt="OpenAI" src="https://img.shields.io/badge/AI-OpenAI-412991?logo=openai&logoColor=white" />
+</p>
+
+<p align="center"><strong>Turn an unfamiliar codebase into a map you can explore.</strong></p>
+
 **Understand a codebase by seeing how its files connect.**
 
 RepoGraph turns a public TypeScript or JavaScript GitHub repository into an interactive dependency map. Explore folders and files, follow imports, see what depends on a file, and get an AI explanation grounded in the file and its real neighbours.
@@ -8,13 +19,13 @@ RepoGraph turns a public TypeScript or JavaScript GitHub repository into an inte
 
 ---
 
-## The problem
+## 🔍 The problem
 
 Joining an unfamiliar project means learning more than its file names. You need to discover how the pieces connect: which modules depend on a shared utility, where a route leads, and what else might be affected by a change.
 
 Reading imports one file at a time makes you build that picture in your head. That gets harder as the project grows, and especially when code has been written over time by several people or AI coding tools.
 
-## The solution
+## 💡 The solution
 
 RepoGraph builds a map from the repository's actual source code:
 
@@ -26,7 +37,7 @@ RepoGraph builds a map from the repository's actual source code:
 
 The graph is deterministic: its files and connections come from parsing. This keeps the map inspectable and makes skipped or unresolved code visible instead of quietly guessing.
 
-## What you can do
+## ✨ What you can do
 
 - Browse a repository as a dependency map, expanding folders into files.
 - Select a file to see its dependencies, dependents, exports, and connections.
@@ -37,7 +48,7 @@ The graph is deterministic: its files and connections come from parsing. This ke
 - Sign in and keep repository analyses within an organization.
 - Follow analysis progress as the repository is fetched, parsed, and stored.
 
-## System architecture
+## 🏗️ System architecture
 
 The diagram shows the request path, analysis pipeline, stored data, and how the browser builds the map and requests explanations.
 
@@ -76,6 +87,22 @@ flowchart TD
     Actions -->|Graph context and source on cache miss| OpenAI
     Actions <-->|Read and write explanation cache| Supabase
     OpenAI -.->|Optional traces| LangSmith
+
+    classDef person fill:#fff7ed,stroke:#f97316,color:#7c2d12,stroke-width:2px
+    classDef client fill:#eff6ff,stroke:#3b82f6,color:#172554,stroke-width:2px
+    classDef identity fill:#f5f3ff,stroke:#8b5cf6,color:#3b0764,stroke-width:2px
+    classDef pipeline fill:#ecfeff,stroke:#06b6d4,color:#164e63,stroke-width:2px
+    classDef storage fill:#ecfdf5,stroke:#10b981,color:#064e3b,stroke-width:2px
+    classDef model fill:#faf5ff,stroke:#a855f7,color:#581c87,stroke-width:2px
+    classDef optional fill:#f8fafc,stroke:#64748b,color:#334155,stroke-dasharray: 5 5
+
+    class Developer person
+    class Browser,View client
+    class Clerk identity
+    class Actions,GitHub,Pipeline,Parser,Graph,Realtime pipeline
+    class Supabase storage
+    class OpenAI model
+    class LangSmith optional
 ```
 
 ### Architecture notes
@@ -88,7 +115,7 @@ flowchart TD
 - **OpenAI** generates explanations and labels only. Those requests use real source and parsed graph context; results are cached in Supabase. **LangSmith tracing is optional.**
 - The Supabase secret key is used only by the server-side pipeline writer. It must never be exposed to the browser.
 
-## Supported input and limits
+## 🧩 Supported input and limits
 
 - Public repositories hosted on `github.com`.
 - TypeScript and JavaScript source files.
@@ -98,7 +125,7 @@ flowchart TD
 
 Private repositories and languages other than TypeScript and JavaScript are not supported. Some imports can remain unresolved when their path is computed at runtime or cannot be mapped to a file; RepoGraph reports these cases in coverage.
 
-## Run locally
+## 🚀 Run locally
 
 ### Requirements
 
@@ -162,7 +189,7 @@ pnpm build
 pnpm start
 ```
 
-## Run the parser by itself
+## 🧪 Run the parser by itself
 
 The parser can run locally without Clerk, Supabase, OpenAI, or the web app. This is useful for inspecting what the parser finds in a local TypeScript or JavaScript project.
 
@@ -184,7 +211,7 @@ pnpm dlx tsx scripts/parse.ts --read result.json
 
 Use `--all` to print every unresolved import instead of a short sample per reason.
 
-## Project layout
+## 🗂️ Project layout
 
 ```text
 app/                 Pages, layouts, and server actions
@@ -199,7 +226,7 @@ docs/                Product notes and implementation specifications
 scripts/             Standalone parser and analysis utilities
 ```
 
-## Useful commands
+## 🛠️ Useful commands
 
 | Command | Purpose |
 | --- | --- |
@@ -209,13 +236,13 @@ scripts/             Standalone parser and analysis utilities
 | `pnpm lint` | Run ESLint |
 | `pnpm dlx tsx scripts/parse.ts <directory>` | Parse a local repository and print a summary |
 
-## Security and privacy
+## 🔐 Security and privacy
 
 - Repository analysis currently accepts **public GitHub repositories** and does not ask for a GitHub token.
 - Keep `.env.local` and all secret keys out of commits. Only `NEXT_PUBLIC_` values are intended for the browser.
 - The Supabase secret key bypasses row-level security and must stay on the server. The pipeline writes explicit organization IDs; normal user reads use the signed-in Clerk token and RLS.
 - AI explanations may send the selected file's source and relevant graph context to OpenAI when the answer is not already cached.
 
-## License
+## 📄 License
 
 No license file is currently included. Until one is added, the project is not offered under an open-source license.
